@@ -1,0 +1,37 @@
+{
+  "applications": "*",
+  "changelogDate": "20230917195322",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "domaine",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Domaine",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "docTopic",
+      "otherEntityRelationshipName": "domaine",
+      "relationshipName": "topic",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

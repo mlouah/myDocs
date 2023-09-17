@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity DocCollection.
+    -->
+    <changeSet id="20230917195320-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="doc_publisher_id"
+                                 baseTableName="doc_collection"
+                                 constraintName="fk_doc_collection__doc_publisher_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="doc_publisher"/>
+    </changeSet>
+</databaseChangeLog>

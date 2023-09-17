@@ -1,0 +1,96 @@
+DEFAULT_MIN_LENGTH = 4
+
+entity Doc{
+  title String required 
+  subTitle String  
+  publishYear String minlength(DEFAULT_MIN_LENGTH) maxlength(DEFAULT_MIN_LENGTH)
+  coverImgPath String
+  editionNumer Integer
+  summary TextBlob
+  purchaseDate LocalDate
+  startReadingDate LocalDate
+  endReadingDate LocalDate
+  price Float
+  copies Integer
+  pageNumber Integer 
+  numDoc String 
+  myNotes TextBlob
+  keywords TextBlob
+  toc TextBlob 
+  filename String
+}
+
+entity DocPublisher {
+  name String 
+  notes TextBlob 
+}
+
+entity DocAuthor {
+  name String  
+  imgUrl String
+  notes TextBlob
+  url String
+}
+
+entity DocTopic{
+	 name String 
+     code String 
+     imgUrl String
+     notes TextBlob
+}
+entity DocBorrowed{
+  borrowDate LocalDate 
+  borrowerName String
+  notes String 
+}
+
+// DocFormat
+entity DocFormat{
+	format String 
+	code String 
+    notes String
+}
+
+entity DocCollection{
+	name String 
+    notes String
+}
+
+entity Language{
+	name String 			 
+    code String maxlength(4) 
+}
+
+entity Domaine{
+	name String 			 
+    code String 
+    notes TextBlob
+}
+
+entity DocCategory{
+	name String 			 
+    code String 
+    notes TextBlob
+}
+
+relationship OneToOne {
+  Doc{publisher(name)} to DocPublisher
+  DocBorrowed{Doc(title)} to Doc   
+  Doc{collection(name)}  to DocCollection{Doc(title)}
+}
+
+relationship OneToMany {
+	DocFormat{Doc(title)}  to Doc{format(format)} 
+    Language{Doc(title)}  to Doc{langue(code)} 
+    DocTopic{Doc(title)}  to Doc{maintopic(name)}
+    DocPublisher{collection(name)}  to DocCollection{DocPublisher(name)}
+	DocAuthor{Doc(title)} to Doc{MainAuthor(name)}
+    Domaine{topic(name)} to DocTopic{Domaine(name)}
+	DocCategory{Doc(title)} to Doc{DocCategory(name)}
+}
+
+paginate *  with pagination
+
+service * with serviceClass
+
+filter *

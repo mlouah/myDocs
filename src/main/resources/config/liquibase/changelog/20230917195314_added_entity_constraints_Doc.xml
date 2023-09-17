@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Doc.
+    -->
+    <changeSet id="20230917195314-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="publisher_id"
+                                 baseTableName="doc"
+                                 constraintName="fk_doc__publisher_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="doc_publisher"/>
+
+        <addForeignKeyConstraint baseColumnNames="collection_id"
+                                 baseTableName="doc"
+                                 constraintName="fk_doc__collection_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="doc_collection"/>
+
+        <addForeignKeyConstraint baseColumnNames="format_id"
+                                 baseTableName="doc"
+                                 constraintName="fk_doc__format_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="doc_format"/>
+
+        <addForeignKeyConstraint baseColumnNames="langue_id"
+                                 baseTableName="doc"
+                                 constraintName="fk_doc__langue_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="language"/>
+
+        <addForeignKeyConstraint baseColumnNames="maintopic_id"
+                                 baseTableName="doc"
+                                 constraintName="fk_doc__maintopic_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="doc_topic"/>
+
+        <addForeignKeyConstraint baseColumnNames="main_author_id"
+                                 baseTableName="doc"
+                                 constraintName="fk_doc__main_author_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="doc_author"/>
+
+        <addForeignKeyConstraint baseColumnNames="doc_category_id"
+                                 baseTableName="doc"
+                                 constraintName="fk_doc__doc_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="doc_category"/>
+    </changeSet>
+</databaseChangeLog>

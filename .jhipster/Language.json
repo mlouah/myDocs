@@ -1,0 +1,34 @@
+{
+  "applications": "*",
+  "changelogDate": "20230917195321",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "language",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "4"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Language",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "doc",
+      "otherEntityRelationshipName": "langue",
+      "relationshipName": "doc",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Doc.
+    -->
+    <changeSet id="20230917195314-1" author="jhipster">
+        <createTable tableName="doc">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="sub_title" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="publish_year" type="varchar(4)">
+                <constraints nullable="true" />
+            </column>
+            <column name="cover_img_path" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="edition_numer" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="summary" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="purchase_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="start_reading_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="end_reading_date" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="price" type="${floatType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="copies" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="page_number" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="num_doc" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="my_notes" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="keywords" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="toc" type="${clobType}">
+                <constraints nullable="true" />
+            </column>
+            <column name="filename" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="publisher_id" type="bigint">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_doc__publisher_id" />
+            </column>
+            <column name="collection_id" type="bigint">
+                <constraints nullable="true" unique="true" uniqueConstraintName="ux_doc__collection_id" />
+            </column>
+            <column name="format_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="langue_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="maintopic_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="main_author_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="doc_category_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20230917195314-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/doc.csv"
+                  separator=";"
+                  tableName="doc"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="title" type="string"/>
+            <column name="sub_title" type="string"/>
+            <column name="publish_year" type="string"/>
+            <column name="cover_img_path" type="string"/>
+            <column name="edition_numer" type="numeric"/>
+            <column name="summary" type="clob"/>
+            <column name="purchase_date" type="date"/>
+            <column name="start_reading_date" type="date"/>
+            <column name="end_reading_date" type="date"/>
+            <column name="price" type="numeric"/>
+            <column name="copies" type="numeric"/>
+            <column name="page_number" type="numeric"/>
+            <column name="num_doc" type="string"/>
+            <column name="my_notes" type="clob"/>
+            <column name="keywords" type="clob"/>
+            <column name="toc" type="clob"/>
+            <column name="filename" type="string"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

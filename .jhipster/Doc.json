@@ -1,0 +1,143 @@
+{
+  "applications": "*",
+  "changelogDate": "20230917195314",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "doc",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "subTitle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "publishYear",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "4",
+      "fieldValidateRulesMinlength": "4"
+    },
+    {
+      "fieldName": "coverImgPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "editionNumer",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "summary",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "purchaseDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "startReadingDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "endReadingDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "Float"
+    },
+    {
+      "fieldName": "copies",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "pageNumber",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "numDoc",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "myNotes",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "keywords",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "toc",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "filename",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "Doc",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "docPublisher",
+      "ownerSide": true,
+      "relationshipName": "publisher",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "docCollection",
+      "otherEntityRelationshipName": "doc",
+      "ownerSide": true,
+      "relationshipName": "collection",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "format",
+      "otherEntityName": "docFormat",
+      "otherEntityRelationshipName": "doc",
+      "relationshipName": "format",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "code",
+      "otherEntityName": "language",
+      "otherEntityRelationshipName": "doc",
+      "relationshipName": "langue",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "docTopic",
+      "otherEntityRelationshipName": "doc",
+      "relationshipName": "maintopic",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "docAuthor",
+      "otherEntityRelationshipName": "doc",
+      "relationshipName": "mainAuthor",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "docCategory",
+      "otherEntityRelationshipName": "doc",
+      "relationshipName": "docCategory",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

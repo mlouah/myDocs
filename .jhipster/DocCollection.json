@@ -1,0 +1,40 @@
+{
+  "applications": "*",
+  "changelogDate": "20230917195320",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "doc_collection",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "DocCollection",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "doc",
+      "otherEntityRelationshipName": "collection",
+      "ownerSide": false,
+      "relationshipName": "doc",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "docPublisher",
+      "otherEntityRelationshipName": "collection",
+      "relationshipName": "docPublisher",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

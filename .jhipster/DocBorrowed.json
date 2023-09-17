@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20230917195318",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "doc_borrowed",
+  "fields": [
+    {
+      "fieldName": "borrowDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "borrowerName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "DocBorrowed",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "doc",
+      "ownerSide": true,
+      "relationshipName": "doc",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

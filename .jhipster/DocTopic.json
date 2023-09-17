@@ -1,0 +1,48 @@
+{
+  "applications": "*",
+  "changelogDate": "20230917195317",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "doc_topic",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "imgUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "DocTopic",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "doc",
+      "otherEntityRelationshipName": "maintopic",
+      "relationshipName": "doc",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "domaine",
+      "otherEntityRelationshipName": "topic",
+      "relationshipName": "domaine",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

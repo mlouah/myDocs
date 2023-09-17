@@ -48,6 +48,23 @@ public class CacheConfiguration {
             createCache(cm, com.perso.mydocs.domain.User.class.getName());
             createCache(cm, com.perso.mydocs.domain.Authority.class.getName());
             createCache(cm, com.perso.mydocs.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.perso.mydocs.domain.Doc.class.getName());
+            createCache(cm, com.perso.mydocs.domain.DocPublisher.class.getName());
+            createCache(cm, com.perso.mydocs.domain.DocPublisher.class.getName() + ".collections");
+            createCache(cm, com.perso.mydocs.domain.DocAuthor.class.getName());
+            createCache(cm, com.perso.mydocs.domain.DocAuthor.class.getName() + ".docs");
+            createCache(cm, com.perso.mydocs.domain.DocTopic.class.getName());
+            createCache(cm, com.perso.mydocs.domain.DocTopic.class.getName() + ".docs");
+            createCache(cm, com.perso.mydocs.domain.DocBorrowed.class.getName());
+            createCache(cm, com.perso.mydocs.domain.DocFormat.class.getName());
+            createCache(cm, com.perso.mydocs.domain.DocFormat.class.getName() + ".docs");
+            createCache(cm, com.perso.mydocs.domain.DocCollection.class.getName());
+            createCache(cm, com.perso.mydocs.domain.Language.class.getName());
+            createCache(cm, com.perso.mydocs.domain.Language.class.getName() + ".docs");
+            createCache(cm, com.perso.mydocs.domain.Domaine.class.getName());
+            createCache(cm, com.perso.mydocs.domain.Domaine.class.getName() + ".topics");
+            createCache(cm, com.perso.mydocs.domain.DocCategory.class.getName());
+            createCache(cm, com.perso.mydocs.domain.DocCategory.class.getName() + ".docs");
             // jhipster-needle-ehcache-add-entry
         };
     }

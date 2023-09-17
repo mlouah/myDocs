@@ -1,0 +1,41 @@
+{
+  "applications": "*",
+  "changelogDate": "20230917195316",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "doc_author",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "imgUrl",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "notes",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": true,
+  "name": "DocAuthor",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "doc",
+      "otherEntityRelationshipName": "mainAuthor",
+      "relationshipName": "doc",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}
