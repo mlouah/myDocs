@@ -1,0 +1,94 @@
+DEFAULT_MIN_LENGTH = 4
+
+// https://www.amazon.fr/livre-achat-occasion-litterature-roman/b/?ie=UTF8&node=301061&ref_=nav_cs_books
+
+entity Doc{
+  title String required 
+  subTitle String  
+  publishYear String minlength(DEFAULT_MIN_LENGTH) maxlength(DEFAULT_MIN_LENGTH)
+  editionNumer Integer
+  purchaseDate LocalDate
+  startReadingDate LocalDate
+  endReadingDate LocalDate
+  price Float
+  rating String maxlength(5)
+  pageNumber Integer 
+  numDoc String 
+  keywords TextBlob
+  toc TextBlob 
+  filename String
+  summary TextBlob
+  coverImgPath String
+  myNotes TextBlob
+}
+
+entity DocPublisher {
+  name String 
+  notes TextBlob
+  url   String
+}
+
+entity DocAuthor {
+  name String  
+  imgUrl String
+  notes TextBlob
+  url String
+}
+
+entity DocTopic{
+	 name String 
+     code String 
+     imgUrl String
+     notes TextBlob
+}
+entity DocBorrowed{
+  borrowDate LocalDate 
+  borrowerName String
+  notes String 
+}
+
+
+entity DocFormat{
+	format String 
+	code String 
+    notes String
+}
+
+entity DocCollection{
+	name String 
+    notes String
+}
+
+entity Language{
+	name String 			 
+    code String maxlength(4) 
+}
+
+entity Domaine{
+	name String 			 
+    code String 
+    notes TextBlob
+}
+
+relationship OneToOne {
+  DocBorrowed{Doc(title)} to Doc   
+}
+
+relationship OneToMany {
+	DocPublisher{doc(title)}  to Doc{publisher(name)}
+	DocFormat{Doc(title)}  to Doc{format(format)} 
+    Language{Doc(title)}  to Doc{langue(code)} 
+    DocTopic{Doc(title)}  to Doc{maintopic(name)}
+	DocAuthor{Doc(title)} to Doc{MainAuthor(name)}
+   	DocCollection{Doc(title)} to Doc{collection(name)}
+	//
+	Domaine{topic(name)} to DocTopic{Domaine(name)}
+	DocPublisher{collection(name)}  to DocCollection{DocPublisher(name)}
+	
+}
+
+paginate *  with pagination
+
+service * with serviceClass
+
+filter *
