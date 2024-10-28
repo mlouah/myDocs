@@ -25,6 +25,10 @@ public class DocPublisherCriteria implements Serializable, Criteria {
 
     private StringFilter name;
 
+    private StringFilter url;
+
+    private LongFilter docId;
+
     private LongFilter collectionId;
 
     private Boolean distinct;
@@ -34,6 +38,8 @@ public class DocPublisherCriteria implements Serializable, Criteria {
     public DocPublisherCriteria(DocPublisherCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.name = other.name == null ? null : other.name.copy();
+        this.url = other.url == null ? null : other.url.copy();
+        this.docId = other.docId == null ? null : other.docId.copy();
         this.collectionId = other.collectionId == null ? null : other.collectionId.copy();
         this.distinct = other.distinct;
     }
@@ -73,6 +79,36 @@ public class DocPublisherCriteria implements Serializable, Criteria {
         this.name = name;
     }
 
+    public StringFilter getUrl() {
+        return url;
+    }
+
+    public StringFilter url() {
+        if (url == null) {
+            url = new StringFilter();
+        }
+        return url;
+    }
+
+    public void setUrl(StringFilter url) {
+        this.url = url;
+    }
+
+    public LongFilter getDocId() {
+        return docId;
+    }
+
+    public LongFilter docId() {
+        if (docId == null) {
+            docId = new LongFilter();
+        }
+        return docId;
+    }
+
+    public void setDocId(LongFilter docId) {
+        this.docId = docId;
+    }
+
     public LongFilter getCollectionId() {
         return collectionId;
     }
@@ -108,6 +144,8 @@ public class DocPublisherCriteria implements Serializable, Criteria {
         return (
             Objects.equals(id, that.id) &&
             Objects.equals(name, that.name) &&
+            Objects.equals(url, that.url) &&
+            Objects.equals(docId, that.docId) &&
             Objects.equals(collectionId, that.collectionId) &&
             Objects.equals(distinct, that.distinct)
         );
@@ -115,7 +153,7 @@ public class DocPublisherCriteria implements Serializable, Criteria {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, collectionId, distinct);
+        return Objects.hash(id, name, url, docId, collectionId, distinct);
     }
 
     // prettier-ignore
@@ -124,6 +162,8 @@ public class DocPublisherCriteria implements Serializable, Criteria {
         return "DocPublisherCriteria{" +
             (id != null ? "id=" + id + ", " : "") +
             (name != null ? "name=" + name + ", " : "") +
+            (url != null ? "url=" + url + ", " : "") +
+            (docId != null ? "docId=" + docId + ", " : "") +
             (collectionId != null ? "collectionId=" + collectionId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";

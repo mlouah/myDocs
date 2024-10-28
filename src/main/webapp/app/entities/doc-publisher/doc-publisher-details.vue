@@ -16,6 +16,12 @@
           <dd>
             <span>{{ docPublisher.notes }}</span>
           </dd>
+          <dt>
+            <span>Url</span>
+          </dt>
+          <dd>
+            <span>{{ docPublisher.url }}</span>
+          </dd>
         </dl>
         <button type="submit" v-on:click.prevent="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
           <font-awesome-icon icon="arrow-left"></font-awesome-icon>&nbsp;<span> Back</span>

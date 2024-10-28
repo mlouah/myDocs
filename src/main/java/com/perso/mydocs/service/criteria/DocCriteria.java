@@ -29,8 +29,6 @@ public class DocCriteria implements Serializable, Criteria {
 
     private StringFilter publishYear;
 
-    private StringFilter coverImgPath;
-
     private IntegerFilter editionNumer;
 
     private LocalDateFilter purchaseDate;
@@ -41,7 +39,7 @@ public class DocCriteria implements Serializable, Criteria {
 
     private FloatFilter price;
 
-    private IntegerFilter copies;
+    private StringFilter rating;
 
     private IntegerFilter pageNumber;
 
@@ -49,9 +47,9 @@ public class DocCriteria implements Serializable, Criteria {
 
     private StringFilter filename;
 
-    private LongFilter publisherId;
+    private StringFilter coverImgPath;
 
-    private LongFilter collectionId;
+    private LongFilter publisherId;
 
     private LongFilter formatId;
 
@@ -61,7 +59,7 @@ public class DocCriteria implements Serializable, Criteria {
 
     private LongFilter mainAuthorId;
 
-    private LongFilter docCategoryId;
+    private LongFilter collectionId;
 
     private Boolean distinct;
 
@@ -72,23 +70,22 @@ public class DocCriteria implements Serializable, Criteria {
         this.title = other.title == null ? null : other.title.copy();
         this.subTitle = other.subTitle == null ? null : other.subTitle.copy();
         this.publishYear = other.publishYear == null ? null : other.publishYear.copy();
-        this.coverImgPath = other.coverImgPath == null ? null : other.coverImgPath.copy();
         this.editionNumer = other.editionNumer == null ? null : other.editionNumer.copy();
         this.purchaseDate = other.purchaseDate == null ? null : other.purchaseDate.copy();
         this.startReadingDate = other.startReadingDate == null ? null : other.startReadingDate.copy();
         this.endReadingDate = other.endReadingDate == null ? null : other.endReadingDate.copy();
         this.price = other.price == null ? null : other.price.copy();
-        this.copies = other.copies == null ? null : other.copies.copy();
+        this.rating = other.rating == null ? null : other.rating.copy();
         this.pageNumber = other.pageNumber == null ? null : other.pageNumber.copy();
         this.numDoc = other.numDoc == null ? null : other.numDoc.copy();
         this.filename = other.filename == null ? null : other.filename.copy();
+        this.coverImgPath = other.coverImgPath == null ? null : other.coverImgPath.copy();
         this.publisherId = other.publisherId == null ? null : other.publisherId.copy();
-        this.collectionId = other.collectionId == null ? null : other.collectionId.copy();
         this.formatId = other.formatId == null ? null : other.formatId.copy();
         this.langueId = other.langueId == null ? null : other.langueId.copy();
         this.maintopicId = other.maintopicId == null ? null : other.maintopicId.copy();
         this.mainAuthorId = other.mainAuthorId == null ? null : other.mainAuthorId.copy();
-        this.docCategoryId = other.docCategoryId == null ? null : other.docCategoryId.copy();
+        this.collectionId = other.collectionId == null ? null : other.collectionId.copy();
         this.distinct = other.distinct;
     }
 
@@ -155,21 +152,6 @@ public class DocCriteria implements Serializable, Criteria {
 
     public void setPublishYear(StringFilter publishYear) {
         this.publishYear = publishYear;
-    }
-
-    public StringFilter getCoverImgPath() {
-        return coverImgPath;
-    }
-
-    public StringFilter coverImgPath() {
-        if (coverImgPath == null) {
-            coverImgPath = new StringFilter();
-        }
-        return coverImgPath;
-    }
-
-    public void setCoverImgPath(StringFilter coverImgPath) {
-        this.coverImgPath = coverImgPath;
     }
 
     public IntegerFilter getEditionNumer() {
@@ -247,19 +229,19 @@ public class DocCriteria implements Serializable, Criteria {
         this.price = price;
     }
 
-    public IntegerFilter getCopies() {
-        return copies;
+    public StringFilter getRating() {
+        return rating;
     }
 
-    public IntegerFilter copies() {
-        if (copies == null) {
-            copies = new IntegerFilter();
+    public StringFilter rating() {
+        if (rating == null) {
+            rating = new StringFilter();
         }
-        return copies;
+        return rating;
     }
 
-    public void setCopies(IntegerFilter copies) {
-        this.copies = copies;
+    public void setRating(StringFilter rating) {
+        this.rating = rating;
     }
 
     public IntegerFilter getPageNumber() {
@@ -307,6 +289,21 @@ public class DocCriteria implements Serializable, Criteria {
         this.filename = filename;
     }
 
+    public StringFilter getCoverImgPath() {
+        return coverImgPath;
+    }
+
+    public StringFilter coverImgPath() {
+        if (coverImgPath == null) {
+            coverImgPath = new StringFilter();
+        }
+        return coverImgPath;
+    }
+
+    public void setCoverImgPath(StringFilter coverImgPath) {
+        this.coverImgPath = coverImgPath;
+    }
+
     public LongFilter getPublisherId() {
         return publisherId;
     }
@@ -320,21 +317,6 @@ public class DocCriteria implements Serializable, Criteria {
 
     public void setPublisherId(LongFilter publisherId) {
         this.publisherId = publisherId;
-    }
-
-    public LongFilter getCollectionId() {
-        return collectionId;
-    }
-
-    public LongFilter collectionId() {
-        if (collectionId == null) {
-            collectionId = new LongFilter();
-        }
-        return collectionId;
-    }
-
-    public void setCollectionId(LongFilter collectionId) {
-        this.collectionId = collectionId;
     }
 
     public LongFilter getFormatId() {
@@ -397,19 +379,19 @@ public class DocCriteria implements Serializable, Criteria {
         this.mainAuthorId = mainAuthorId;
     }
 
-    public LongFilter getDocCategoryId() {
-        return docCategoryId;
+    public LongFilter getCollectionId() {
+        return collectionId;
     }
 
-    public LongFilter docCategoryId() {
-        if (docCategoryId == null) {
-            docCategoryId = new LongFilter();
+    public LongFilter collectionId() {
+        if (collectionId == null) {
+            collectionId = new LongFilter();
         }
-        return docCategoryId;
+        return collectionId;
     }
 
-    public void setDocCategoryId(LongFilter docCategoryId) {
-        this.docCategoryId = docCategoryId;
+    public void setCollectionId(LongFilter collectionId) {
+        this.collectionId = collectionId;
     }
 
     public Boolean getDistinct() {
@@ -434,23 +416,22 @@ public class DocCriteria implements Serializable, Criteria {
             Objects.equals(title, that.title) &&
             Objects.equals(subTitle, that.subTitle) &&
             Objects.equals(publishYear, that.publishYear) &&
-            Objects.equals(coverImgPath, that.coverImgPath) &&
             Objects.equals(editionNumer, that.editionNumer) &&
             Objects.equals(purchaseDate, that.purchaseDate) &&
             Objects.equals(startReadingDate, that.startReadingDate) &&
             Objects.equals(endReadingDate, that.endReadingDate) &&
             Objects.equals(price, that.price) &&
-            Objects.equals(copies, that.copies) &&
+            Objects.equals(rating, that.rating) &&
             Objects.equals(pageNumber, that.pageNumber) &&
             Objects.equals(numDoc, that.numDoc) &&
             Objects.equals(filename, that.filename) &&
+            Objects.equals(coverImgPath, that.coverImgPath) &&
             Objects.equals(publisherId, that.publisherId) &&
-            Objects.equals(collectionId, that.collectionId) &&
             Objects.equals(formatId, that.formatId) &&
             Objects.equals(langueId, that.langueId) &&
             Objects.equals(maintopicId, that.maintopicId) &&
             Objects.equals(mainAuthorId, that.mainAuthorId) &&
-            Objects.equals(docCategoryId, that.docCategoryId) &&
+            Objects.equals(collectionId, that.collectionId) &&
             Objects.equals(distinct, that.distinct)
         );
     }
@@ -462,23 +443,22 @@ public class DocCriteria implements Serializable, Criteria {
             title,
             subTitle,
             publishYear,
-            coverImgPath,
             editionNumer,
             purchaseDate,
             startReadingDate,
             endReadingDate,
             price,
-            copies,
+            rating,
             pageNumber,
             numDoc,
             filename,
+            coverImgPath,
             publisherId,
-            collectionId,
             formatId,
             langueId,
             maintopicId,
             mainAuthorId,
-            docCategoryId,
+            collectionId,
             distinct
         );
     }
@@ -491,23 +471,22 @@ public class DocCriteria implements Serializable, Criteria {
             (title != null ? "title=" + title + ", " : "") +
             (subTitle != null ? "subTitle=" + subTitle + ", " : "") +
             (publishYear != null ? "publishYear=" + publishYear + ", " : "") +
-            (coverImgPath != null ? "coverImgPath=" + coverImgPath + ", " : "") +
             (editionNumer != null ? "editionNumer=" + editionNumer + ", " : "") +
             (purchaseDate != null ? "purchaseDate=" + purchaseDate + ", " : "") +
             (startReadingDate != null ? "startReadingDate=" + startReadingDate + ", " : "") +
             (endReadingDate != null ? "endReadingDate=" + endReadingDate + ", " : "") +
             (price != null ? "price=" + price + ", " : "") +
-            (copies != null ? "copies=" + copies + ", " : "") +
+            (rating != null ? "rating=" + rating + ", " : "") +
             (pageNumber != null ? "pageNumber=" + pageNumber + ", " : "") +
             (numDoc != null ? "numDoc=" + numDoc + ", " : "") +
             (filename != null ? "filename=" + filename + ", " : "") +
+            (coverImgPath != null ? "coverImgPath=" + coverImgPath + ", " : "") +
             (publisherId != null ? "publisherId=" + publisherId + ", " : "") +
-            (collectionId != null ? "collectionId=" + collectionId + ", " : "") +
             (formatId != null ? "formatId=" + formatId + ", " : "") +
             (langueId != null ? "langueId=" + langueId + ", " : "") +
             (maintopicId != null ? "maintopicId=" + maintopicId + ", " : "") +
             (mainAuthorId != null ? "mainAuthorId=" + mainAuthorId + ", " : "") +
-            (docCategoryId != null ? "docCategoryId=" + docCategoryId + ", " : "") +
+            (collectionId != null ? "collectionId=" + collectionId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

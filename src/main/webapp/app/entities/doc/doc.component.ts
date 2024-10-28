@@ -16,7 +16,7 @@ export default class Doc extends mixins(JhiDataUtils) {
   @Inject('alertService') private alertService: () => AlertService;
 
   private removeId: number = null;
-  public itemsPerPage = 20;
+  public itemsPerPage = 50;
   public queryCount: number = null;
   public page = 1;
   public previousPage = 1;

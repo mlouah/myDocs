@@ -31,9 +31,17 @@ public class DocPublisher implements Serializable {
     @Column(name = "notes")
     private String notes;
 
+    @Column(name = "url")
+    private String url;
+
+    @OneToMany(mappedBy = "publisher")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "publisher", "format", "langue", "maintopic", "mainAuthor", "collection" }, allowSetters = true)
+    private Set<Doc> docs = new HashSet<>();
+
     @OneToMany(mappedBy = "docPublisher")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "doc", "docPublisher" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "docs", "docPublisher" }, allowSetters = true)
     private Set<DocCollection> collections = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -75,6 +83,50 @@ public class DocPublisher implements Serializable {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public String getUrl() {
+        return this.url;
+    }
+
+    public DocPublisher url(String url) {
+        this.setUrl(url);
+        return this;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Set<Doc> getDocs() {
+        return this.docs;
+    }
+
+    public void setDocs(Set<Doc> docs) {
+        if (this.docs != null) {
+            this.docs.forEach(i -> i.setPublisher(null));
+        }
+        if (docs != null) {
+            docs.forEach(i -> i.setPublisher(this));
+        }
+        this.docs = docs;
+    }
+
+    public DocPublisher docs(Set<Doc> docs) {
+        this.setDocs(docs);
+        return this;
+    }
+
+    public DocPublisher addDoc(Doc doc) {
+        this.docs.add(doc);
+        doc.setPublisher(this);
+        return this;
+    }
+
+    public DocPublisher removeDoc(Doc doc) {
+        this.docs.remove(doc);
+        doc.setPublisher(null);
+        return this;
     }
 
     public Set<DocCollection> getCollections() {
@@ -134,6 +186,7 @@ public class DocPublisher implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", notes='" + getNotes() + "'" +
+            ", url='" + getUrl() + "'" +
             "}";
     }
 }

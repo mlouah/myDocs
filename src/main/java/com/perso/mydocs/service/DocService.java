@@ -68,14 +68,8 @@ public class DocService {
                 if (doc.getPublishYear() != null) {
                     existingDoc.setPublishYear(doc.getPublishYear());
                 }
-                if (doc.getCoverImgPath() != null) {
-                    existingDoc.setCoverImgPath(doc.getCoverImgPath());
-                }
                 if (doc.getEditionNumer() != null) {
                     existingDoc.setEditionNumer(doc.getEditionNumer());
-                }
-                if (doc.getSummary() != null) {
-                    existingDoc.setSummary(doc.getSummary());
                 }
                 if (doc.getPurchaseDate() != null) {
                     existingDoc.setPurchaseDate(doc.getPurchaseDate());
@@ -89,17 +83,14 @@ public class DocService {
                 if (doc.getPrice() != null) {
                     existingDoc.setPrice(doc.getPrice());
                 }
-                if (doc.getCopies() != null) {
-                    existingDoc.setCopies(doc.getCopies());
+                if (doc.getRating() != null) {
+                    existingDoc.setRating(doc.getRating());
                 }
                 if (doc.getPageNumber() != null) {
                     existingDoc.setPageNumber(doc.getPageNumber());
                 }
                 if (doc.getNumDoc() != null) {
                     existingDoc.setNumDoc(doc.getNumDoc());
-                }
-                if (doc.getMyNotes() != null) {
-                    existingDoc.setMyNotes(doc.getMyNotes());
                 }
                 if (doc.getKeywords() != null) {
                     existingDoc.setKeywords(doc.getKeywords());
@@ -109,6 +100,15 @@ public class DocService {
                 }
                 if (doc.getFilename() != null) {
                     existingDoc.setFilename(doc.getFilename());
+                }
+                if (doc.getSummary() != null) {
+                    existingDoc.setSummary(doc.getSummary());
+                }
+                if (doc.getCoverImgPath() != null) {
+                    existingDoc.setCoverImgPath(doc.getCoverImgPath());
+                }
+                if (doc.getMyNotes() != null) {
+                    existingDoc.setMyNotes(doc.getMyNotes());
                 }
 
                 return existingDoc;

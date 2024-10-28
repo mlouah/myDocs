@@ -5,7 +5,7 @@ export interface IDocCollection {
   id?: number;
   name?: string | null;
   notes?: string | null;
-  doc?: IDoc | null;
+  docs?: IDoc[] | null;
   docPublisher?: IDocPublisher | null;
 }
 
@@ -14,7 +14,7 @@ export class DocCollection implements IDocCollection {
     public id?: number,
     public name?: string | null,
     public notes?: string | null,
-    public doc?: IDoc | null,
+    public docs?: IDoc[] | null,
     public docPublisher?: IDocPublisher | null
   ) {}
 }

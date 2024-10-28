@@ -35,15 +35,8 @@ public class Doc implements Serializable {
     @Column(name = "publish_year", length = 4)
     private String publishYear;
 
-    @Column(name = "cover_img_path")
-    private String coverImgPath;
-
     @Column(name = "edition_numer")
     private Integer editionNumer;
-
-    @Lob
-    @Column(name = "summary")
-    private String summary;
 
     @Column(name = "purchase_date")
     private LocalDate purchaseDate;
@@ -57,18 +50,15 @@ public class Doc implements Serializable {
     @Column(name = "price")
     private Float price;
 
-    @Column(name = "copies")
-    private Integer copies;
+    @Size(max = 5)
+    @Column(name = "rating", length = 5)
+    private String rating;
 
     @Column(name = "page_number")
     private Integer pageNumber;
 
     @Column(name = "num_doc")
     private String numDoc;
-
-    @Lob
-    @Column(name = "my_notes")
-    private String myNotes;
 
     @Lob
     @Column(name = "keywords")
@@ -81,15 +71,20 @@ public class Doc implements Serializable {
     @Column(name = "filename")
     private String filename;
 
-    @JsonIgnoreProperties(value = { "collections" }, allowSetters = true)
-    @OneToOne
-    @JoinColumn(unique = true)
-    private DocPublisher publisher;
+    @Lob
+    @Column(name = "summary")
+    private String summary;
 
-    @JsonIgnoreProperties(value = { "doc", "docPublisher" }, allowSetters = true)
-    @OneToOne
-    @JoinColumn(unique = true)
-    private DocCollection collection;
+    @Column(name = "cover_img_path")
+    private String coverImgPath;
+
+    @Lob
+    @Column(name = "my_notes")
+    private String myNotes;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "docs", "collections" }, allowSetters = true)
+    private DocPublisher publisher;
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "docs" }, allowSetters = true)
@@ -108,8 +103,8 @@ public class Doc implements Serializable {
     private DocAuthor mainAuthor;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "docs" }, allowSetters = true)
-    private DocCategory docCategory;
+    @JsonIgnoreProperties(value = { "docs", "docPublisher" }, allowSetters = true)
+    private DocCollection collection;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -165,19 +160,6 @@ public class Doc implements Serializable {
         this.publishYear = publishYear;
     }
 
-    public String getCoverImgPath() {
-        return this.coverImgPath;
-    }
-
-    public Doc coverImgPath(String coverImgPath) {
-        this.setCoverImgPath(coverImgPath);
-        return this;
-    }
-
-    public void setCoverImgPath(String coverImgPath) {
-        this.coverImgPath = coverImgPath;
-    }
-
     public Integer getEditionNumer() {
         return this.editionNumer;
     }
@@ -189,19 +171,6 @@ public class Doc implements Serializable {
 
     public void setEditionNumer(Integer editionNumer) {
         this.editionNumer = editionNumer;
-    }
-
-    public String getSummary() {
-        return this.summary;
-    }
-
-    public Doc summary(String summary) {
-        this.setSummary(summary);
-        return this;
-    }
-
-    public void setSummary(String summary) {
-        this.summary = summary;
     }
 
     public LocalDate getPurchaseDate() {
@@ -256,17 +225,17 @@ public class Doc implements Serializable {
         this.price = price;
     }
 
-    public Integer getCopies() {
-        return this.copies;
+    public String getRating() {
+        return this.rating;
     }
 
-    public Doc copies(Integer copies) {
-        this.setCopies(copies);
+    public Doc rating(String rating) {
+        this.setRating(rating);
         return this;
     }
 
-    public void setCopies(Integer copies) {
-        this.copies = copies;
+    public void setRating(String rating) {
+        this.rating = rating;
     }
 
     public Integer getPageNumber() {
@@ -293,19 +262,6 @@ public class Doc implements Serializable {
 
     public void setNumDoc(String numDoc) {
         this.numDoc = numDoc;
-    }
-
-    public String getMyNotes() {
-        return this.myNotes;
-    }
-
-    public Doc myNotes(String myNotes) {
-        this.setMyNotes(myNotes);
-        return this;
-    }
-
-    public void setMyNotes(String myNotes) {
-        this.myNotes = myNotes;
     }
 
     public String getKeywords() {
@@ -347,6 +303,45 @@ public class Doc implements Serializable {
         this.filename = filename;
     }
 
+    public String getSummary() {
+        return this.summary;
+    }
+
+    public Doc summary(String summary) {
+        this.setSummary(summary);
+        return this;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
+    }
+
+    public String getCoverImgPath() {
+        return this.coverImgPath;
+    }
+
+    public Doc coverImgPath(String coverImgPath) {
+        this.setCoverImgPath(coverImgPath);
+        return this;
+    }
+
+    public void setCoverImgPath(String coverImgPath) {
+        this.coverImgPath = coverImgPath;
+    }
+
+    public String getMyNotes() {
+        return this.myNotes;
+    }
+
+    public Doc myNotes(String myNotes) {
+        this.setMyNotes(myNotes);
+        return this;
+    }
+
+    public void setMyNotes(String myNotes) {
+        this.myNotes = myNotes;
+    }
+
     public DocPublisher getPublisher() {
         return this.publisher;
     }
@@ -357,19 +352,6 @@ public class Doc implements Serializable {
 
     public Doc publisher(DocPublisher docPublisher) {
         this.setPublisher(docPublisher);
-        return this;
-    }
-
-    public DocCollection getCollection() {
-        return this.collection;
-    }
-
-    public void setCollection(DocCollection docCollection) {
-        this.collection = docCollection;
-    }
-
-    public Doc collection(DocCollection docCollection) {
-        this.setCollection(docCollection);
         return this;
     }
 
@@ -425,16 +407,16 @@ public class Doc implements Serializable {
         return this;
     }
 
-    public DocCategory getDocCategory() {
-        return this.docCategory;
+    public DocCollection getCollection() {
+        return this.collection;
     }
 
-    public void setDocCategory(DocCategory docCategory) {
-        this.docCategory = docCategory;
+    public void setCollection(DocCollection docCollection) {
+        this.collection = docCollection;
     }
 
-    public Doc docCategory(DocCategory docCategory) {
-        this.setDocCategory(docCategory);
+    public Doc collection(DocCollection docCollection) {
+        this.setCollection(docCollection);
         return this;
     }
 
@@ -465,20 +447,20 @@ public class Doc implements Serializable {
             ", title='" + getTitle() + "'" +
             ", subTitle='" + getSubTitle() + "'" +
             ", publishYear='" + getPublishYear() + "'" +
-            ", coverImgPath='" + getCoverImgPath() + "'" +
             ", editionNumer=" + getEditionNumer() +
-            ", summary='" + getSummary() + "'" +
             ", purchaseDate='" + getPurchaseDate() + "'" +
             ", startReadingDate='" + getStartReadingDate() + "'" +
             ", endReadingDate='" + getEndReadingDate() + "'" +
             ", price=" + getPrice() +
-            ", copies=" + getCopies() +
+            ", rating='" + getRating() + "'" +
             ", pageNumber=" + getPageNumber() +
             ", numDoc='" + getNumDoc() + "'" +
-            ", myNotes='" + getMyNotes() + "'" +
             ", keywords='" + getKeywords() + "'" +
             ", toc='" + getToc() + "'" +
             ", filename='" + getFilename() + "'" +
+            ", summary='" + getSummary() + "'" +
+            ", coverImgPath='" + getCoverImgPath() + "'" +
+            ", myNotes='" + getMyNotes() + "'" +
             "}";
     }
 }

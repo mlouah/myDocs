@@ -27,18 +27,18 @@ public interface DocRepository extends JpaRepository<Doc, Long>, JpaSpecificatio
     }
 
     @Query(
-        value = "select distinct doc from Doc doc left join fetch doc.publisher left join fetch doc.collection left join fetch doc.format left join fetch doc.langue left join fetch doc.maintopic left join fetch doc.mainAuthor left join fetch doc.docCategory",
+        value = "select distinct doc from Doc doc left join fetch doc.publisher left join fetch doc.format left join fetch doc.langue left join fetch doc.maintopic left join fetch doc.mainAuthor left join fetch doc.collection",
         countQuery = "select count(distinct doc) from Doc doc"
     )
     Page<Doc> findAllWithToOneRelationships(Pageable pageable);
 
     @Query(
-        "select distinct doc from Doc doc left join fetch doc.publisher left join fetch doc.collection left join fetch doc.format left join fetch doc.langue left join fetch doc.maintopic left join fetch doc.mainAuthor left join fetch doc.docCategory"
+        "select distinct doc from Doc doc left join fetch doc.publisher left join fetch doc.format left join fetch doc.langue left join fetch doc.maintopic left join fetch doc.mainAuthor left join fetch doc.collection"
     )
     List<Doc> findAllWithToOneRelationships();
 
     @Query(
-        "select doc from Doc doc left join fetch doc.publisher left join fetch doc.collection left join fetch doc.format left join fetch doc.langue left join fetch doc.maintopic left join fetch doc.mainAuthor left join fetch doc.docCategory where doc.id =:id"
+        "select doc from Doc doc left join fetch doc.publisher left join fetch doc.format left join fetch doc.langue left join fetch doc.maintopic left join fetch doc.mainAuthor left join fetch doc.collection where doc.id =:id"
     )
     Optional<Doc> findOneWithToOneRelationships(@Param("id") Long id);
 }

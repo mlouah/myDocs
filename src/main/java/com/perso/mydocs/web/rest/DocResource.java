@@ -98,6 +98,7 @@ public class DocResource {
         }
 
         Doc result = docService.update(doc);
+
         return ResponseEntity
             .ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, false, ENTITY_NAME, doc.getId().toString()))
@@ -174,6 +175,7 @@ public class DocResource {
     @GetMapping("/docs/{id}")
     public ResponseEntity<Doc> getDoc(@PathVariable Long id) {
         log.debug("REST request to get Doc : {}", id);
+        System.out.println("********************* DocResource.getDoc() ******************");
         Optional<Doc> doc = docService.findOne(id);
         return ResponseUtil.wrapOrNotFound(doc);
     }

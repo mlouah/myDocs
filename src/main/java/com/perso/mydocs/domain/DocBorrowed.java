@@ -32,10 +32,7 @@ public class DocBorrowed implements Serializable {
     @Column(name = "notes")
     private String notes;
 
-    @JsonIgnoreProperties(
-        value = { "publisher", "collection", "format", "langue", "maintopic", "mainAuthor", "docCategory" },
-        allowSetters = true
-    )
+    @JsonIgnoreProperties(value = { "publisher", "format", "langue", "maintopic", "mainAuthor", "collection" }, allowSetters = true)
     @OneToOne
     @JoinColumn(unique = true)
     private Doc doc;

@@ -57,12 +57,6 @@ const Domaine = () => import('@/entities/domaine/domaine.vue');
 const DomaineUpdate = () => import('@/entities/domaine/domaine-update.vue');
 // prettier-ignore
 const DomaineDetails = () => import('@/entities/domaine/domaine-details.vue');
-// prettier-ignore
-const DocCategory = () => import('@/entities/doc-category/doc-category.vue');
-// prettier-ignore
-const DocCategoryUpdate = () => import('@/entities/doc-category/doc-category-update.vue');
-// prettier-ignore
-const DocCategoryDetails = () => import('@/entities/doc-category/doc-category-details.vue');
 // jhipster-needle-add-entity-to-router-import - JHipster will import entities to the router here
 
 export default {
@@ -283,30 +277,6 @@ export default {
       path: 'domaine/:domaineId/view',
       name: 'DomaineView',
       component: DomaineDetails,
-      meta: { authorities: [Authority.USER] },
-    },
-    {
-      path: 'doc-category',
-      name: 'DocCategory',
-      component: DocCategory,
-      meta: { authorities: [Authority.USER] },
-    },
-    {
-      path: 'doc-category/new',
-      name: 'DocCategoryCreate',
-      component: DocCategoryUpdate,
-      meta: { authorities: [Authority.USER] },
-    },
-    {
-      path: 'doc-category/:docCategoryId/edit',
-      name: 'DocCategoryEdit',
-      component: DocCategoryUpdate,
-      meta: { authorities: [Authority.USER] },
-    },
-    {
-      path: 'doc-category/:docCategoryId/view',
-      name: 'DocCategoryView',
-      component: DocCategoryDetails,
       meta: { authorities: [Authority.USER] },
     },
     // jhipster-needle-add-entity-to-router - JHipster will add entities to the router here

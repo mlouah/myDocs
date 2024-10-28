@@ -94,9 +94,6 @@ public class DocQueryService extends QueryService<Doc> {
             if (criteria.getPublishYear() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getPublishYear(), Doc_.publishYear));
             }
-            if (criteria.getCoverImgPath() != null) {
-                specification = specification.and(buildStringSpecification(criteria.getCoverImgPath(), Doc_.coverImgPath));
-            }
             if (criteria.getEditionNumer() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getEditionNumer(), Doc_.editionNumer));
             }
@@ -112,8 +109,8 @@ public class DocQueryService extends QueryService<Doc> {
             if (criteria.getPrice() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getPrice(), Doc_.price));
             }
-            if (criteria.getCopies() != null) {
-                specification = specification.and(buildRangeSpecification(criteria.getCopies(), Doc_.copies));
+            if (criteria.getRating() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getRating(), Doc_.rating));
             }
             if (criteria.getPageNumber() != null) {
                 specification = specification.and(buildRangeSpecification(criteria.getPageNumber(), Doc_.pageNumber));
@@ -124,21 +121,15 @@ public class DocQueryService extends QueryService<Doc> {
             if (criteria.getFilename() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getFilename(), Doc_.filename));
             }
+            if (criteria.getCoverImgPath() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getCoverImgPath(), Doc_.coverImgPath));
+            }
             if (criteria.getPublisherId() != null) {
                 specification =
                     specification.and(
                         buildSpecification(
                             criteria.getPublisherId(),
                             root -> root.join(Doc_.publisher, JoinType.LEFT).get(DocPublisher_.id)
-                        )
-                    );
-            }
-            if (criteria.getCollectionId() != null) {
-                specification =
-                    specification.and(
-                        buildSpecification(
-                            criteria.getCollectionId(),
-                            root -> root.join(Doc_.collection, JoinType.LEFT).get(DocCollection_.id)
                         )
                     );
             }
@@ -166,12 +157,12 @@ public class DocQueryService extends QueryService<Doc> {
                         buildSpecification(criteria.getMainAuthorId(), root -> root.join(Doc_.mainAuthor, JoinType.LEFT).get(DocAuthor_.id))
                     );
             }
-            if (criteria.getDocCategoryId() != null) {
+            if (criteria.getCollectionId() != null) {
                 specification =
                     specification.and(
                         buildSpecification(
-                            criteria.getDocCategoryId(),
-                            root -> root.join(Doc_.docCategory, JoinType.LEFT).get(DocCategory_.id)
+                            criteria.getCollectionId(),
+                            root -> root.join(Doc_.collection, JoinType.LEFT).get(DocCollection_.id)
                         )
                     );
             }

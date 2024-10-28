@@ -2,10 +2,7 @@ package com.perso.mydocs.service;
 
 import com.perso.mydocs.domain.DocCollection;
 import com.perso.mydocs.repository.DocCollectionRepository;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -93,19 +90,6 @@ public class DocCollectionService {
      */
     public Page<DocCollection> findAllWithEagerRelationships(Pageable pageable) {
         return docCollectionRepository.findAllWithEagerRelationships(pageable);
-    }
-
-    /**
-     *  Get all the docCollections where Doc is {@code null}.
-     *  @return the list of entities.
-     */
-    @Transactional(readOnly = true)
-    public List<DocCollection> findAllWhereDocIsNull() {
-        log.debug("Request to get all docCollections where Doc is null");
-        return StreamSupport
-            .stream(docCollectionRepository.findAll().spliterator(), false)
-            .filter(docCollection -> docCollection.getDoc() == null)
-            .collect(Collectors.toList());
     }
 
     /**

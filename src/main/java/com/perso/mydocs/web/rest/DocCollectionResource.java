@@ -11,7 +11,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -160,6 +159,8 @@ public class DocCollectionResource {
         log.debug("REST request to get DocCollections by criteria: {}", criteria);
         Page<DocCollection> page = docCollectionQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+
+        System.out.println(" ******************   DocCollectionResource.getAllDocCollections()    *****************");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 

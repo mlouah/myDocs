@@ -1,6 +1,6 @@
 <template>
   <div id="footer" class="footer">
-    <p>This is your footer</p>
+    <p>M. Louah 2024</p>
   </div>
 </template>
 

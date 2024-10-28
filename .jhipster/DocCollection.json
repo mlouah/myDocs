@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20230917195320",
+  "changelogDate": "20230917223442",
   "dto": "no",
   "embedded": false,
   "entityTableName": "doc_collection",
@@ -24,9 +24,8 @@
       "otherEntityField": "title",
       "otherEntityName": "doc",
       "otherEntityRelationshipName": "collection",
-      "ownerSide": false,
       "relationshipName": "doc",
-      "relationshipType": "one-to-one"
+      "relationshipType": "one-to-many"
     },
     {
       "otherEntityField": "name",

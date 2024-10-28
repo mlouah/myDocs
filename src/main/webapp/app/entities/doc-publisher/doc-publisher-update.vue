@@ -31,6 +31,18 @@
               v-model="$v.docPublisher.notes.$model"
             ></textarea>
           </div>
+          <div class="form-group">
+            <label class="form-control-label" for="doc-publisher-url">Url</label>
+            <input
+              type="text"
+              class="form-control"
+              name="url"
+              id="doc-publisher-url"
+              data-cy="url"
+              :class="{ valid: !$v.docPublisher.url.$invalid, invalid: $v.docPublisher.url.$invalid }"
+              v-model="$v.docPublisher.url.$model"
+            />
+          </div>
         </div>
         <div>
           <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" v-on:click="previousState()">

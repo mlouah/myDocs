@@ -94,7 +94,7 @@ public class DocCollectionQueryService extends QueryService<DocCollection> {
             if (criteria.getDocId() != null) {
                 specification =
                     specification.and(
-                        buildSpecification(criteria.getDocId(), root -> root.join(DocCollection_.doc, JoinType.LEFT).get(Doc_.id))
+                        buildSpecification(criteria.getDocId(), root -> root.join(DocCollection_.docs, JoinType.LEFT).get(Doc_.id))
                     );
             }
             if (criteria.getDocPublisherId() != null) {

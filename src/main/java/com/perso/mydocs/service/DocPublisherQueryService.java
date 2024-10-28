@@ -88,6 +88,15 @@ public class DocPublisherQueryService extends QueryService<DocPublisher> {
             if (criteria.getName() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getName(), DocPublisher_.name));
             }
+            if (criteria.getUrl() != null) {
+                specification = specification.and(buildStringSpecification(criteria.getUrl(), DocPublisher_.url));
+            }
+            if (criteria.getDocId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(criteria.getDocId(), root -> root.join(DocPublisher_.docs, JoinType.LEFT).get(Doc_.id))
+                    );
+            }
             if (criteria.getCollectionId() != null) {
                 specification =
                     specification.and(

@@ -23,22 +23,10 @@
             <span>{{ doc.publishYear }}</span>
           </dd>
           <dt>
-            <span>Cover Img Path</span>
-          </dt>
-          <dd>
-            <span>{{ doc.coverImgPath }}</span>
-          </dd>
-          <dt>
             <span>Edition Numer</span>
           </dt>
           <dd>
             <span>{{ doc.editionNumer }}</span>
-          </dd>
-          <dt>
-            <span>Summary</span>
-          </dt>
-          <dd>
-            <span>{{ doc.summary }}</span>
           </dd>
           <dt>
             <span>Purchase Date</span>
@@ -65,10 +53,10 @@
             <span>{{ doc.price }}</span>
           </dd>
           <dt>
-            <span>Copies</span>
+            <span>Rating</span>
           </dt>
           <dd>
-            <span>{{ doc.copies }}</span>
+            <span>{{ doc.rating }}</span>
           </dd>
           <dt>
             <span>Page Number</span>
@@ -83,12 +71,6 @@
             <span>{{ doc.numDoc }}</span>
           </dd>
           <dt>
-            <span>My Notes</span>
-          </dt>
-          <dd>
-            <span>{{ doc.myNotes }}</span>
-          </dd>
-          <dt>
             <span>Keywords</span>
           </dt>
           <dd>
@@ -98,7 +80,7 @@
             <span>Toc</span>
           </dt>
           <dd>
-            <span>{{ doc.toc }}</span>
+            <span v-html="doc.toc"></span>
           </dd>
           <dt>
             <span>Filename</span>
@@ -107,22 +89,30 @@
             <span>{{ doc.filename }}</span>
           </dd>
           <dt>
+            <span>Summary</span>
+          </dt>
+          <dd>
+            <span v-html="doc.summary"></span>
+          </dd>
+          <dt>
+            <span>Cover Img Path</span>
+          </dt>
+          <dd>
+            <span>{{ doc.coverImgPath }}</span>
+          </dd>
+          <dt>
+            <span>My Notes</span>
+          </dt>
+          <dd>
+            <span>{{ doc.myNotes }}</span>
+          </dd>
+          <dt>
             <span>Publisher</span>
           </dt>
           <dd>
             <div v-if="doc.publisher">
               <router-link :to="{ name: 'DocPublisherView', params: { docPublisherId: doc.publisher.id } }">{{
                 doc.publisher.name
-              }}</router-link>
-            </div>
-          </dd>
-          <dt>
-            <span>Collection</span>
-          </dt>
-          <dd>
-            <div v-if="doc.collection">
-              <router-link :to="{ name: 'DocCollectionView', params: { docCollectionId: doc.collection.id } }">{{
-                doc.collection.name
               }}</router-link>
             </div>
           </dd>
@@ -161,12 +151,12 @@
             </div>
           </dd>
           <dt>
-            <span>Doc Category</span>
+            <span>Collection</span>
           </dt>
           <dd>
-            <div v-if="doc.docCategory">
-              <router-link :to="{ name: 'DocCategoryView', params: { docCategoryId: doc.docCategory.id } }">{{
-                doc.docCategory.name
+            <div v-if="doc.collection">
+              <router-link :to="{ name: 'DocCollectionView', params: { docCollectionId: doc.collection.id } }">{{
+                doc.collection.name
               }}</router-link>
             </div>
           </dd>

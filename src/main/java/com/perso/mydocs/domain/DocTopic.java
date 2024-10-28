@@ -39,10 +39,7 @@ public class DocTopic implements Serializable {
 
     @OneToMany(mappedBy = "maintopic")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(
-        value = { "publisher", "collection", "format", "langue", "maintopic", "mainAuthor", "docCategory" },
-        allowSetters = true
-    )
+    @JsonIgnoreProperties(value = { "publisher", "format", "langue", "maintopic", "mainAuthor", "collection" }, allowSetters = true)
     private Set<Doc> docs = new HashSet<>();
 
     @ManyToOne

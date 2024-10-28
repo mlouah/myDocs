@@ -150,6 +150,9 @@ public class DocAuthorResource {
      * @param pageable the pagination information.
      * @param criteria the criteria which the requested entities should match.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of docAuthors in body.
+	 
+	[  c.p.mydocs.web.rest.DocAuthorResource    : Enter: getAllDocAuthors() with argument[s] = [DocAuthorCriteria{}, Page request [number: 0, size 20, sort: UNSORTED]]
+	 
      */
     @GetMapping("/doc-authors")
     public ResponseEntity<List<DocAuthor>> getAllDocAuthors(
@@ -157,6 +160,7 @@ public class DocAuthorResource {
         @org.springdoc.api.annotations.ParameterObject Pageable pageable
     ) {
         log.debug("REST request to get DocAuthors by criteria: {}", criteria);
+
         Page<DocAuthor> page = docAuthorQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());

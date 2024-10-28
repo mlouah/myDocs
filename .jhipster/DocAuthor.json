@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20230917195316",
+  "changelogDate": "20230917223438",
   "dto": "no",
   "embedded": false,
   "entityTableName": "doc_author",

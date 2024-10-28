@@ -27,7 +27,7 @@
         <b-nav-item-dropdown right id="entity-menu" v-if="authenticated" active-class="active" class="pointer" data-cy="entity">
           <span slot="button-content" class="navbar-dropdown-menu">
             <font-awesome-icon icon="th-list" />
-            <span class="no-bold">Entities</span>
+            <span class="no-bold">Manage documentation</span>
           </span>
           <entities-menu></entities-menu>
           <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
@@ -160,7 +160,7 @@
 
 .logo-img {
   height: 100%;
-  background: url('../../../content/images/logo-jhipster.png') no-repeat center center;
+  background: url('../../../content/images/logo-mydocs.png') no-repeat center center;
   background-size: contain;
   width: 100%;
   filter: drop-shadow(0 0 0.05rem white);

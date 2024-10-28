@@ -13,7 +13,7 @@ export default class DocFormat extends Vue {
   @Inject('alertService') private alertService: () => AlertService;
 
   private removeId: number = null;
-  public itemsPerPage = 20;
+  public itemsPerPage = 30;
   public queryCount: number = null;
   public page = 1;
   public previousPage = 1;

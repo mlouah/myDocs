@@ -5,6 +5,9 @@ import JhiDataUtils from '@/shared/data/data-utils.service';
 
 import AlertService from '@/shared/alert/alert.service';
 
+import DocService from '@/entities/doc/doc.service';
+import { IDoc } from '@/shared/model/doc.model';
+
 import DocCollectionService from '@/entities/doc-collection/doc-collection.service';
 import { IDocCollection } from '@/shared/model/doc-collection.model';
 
@@ -15,6 +18,7 @@ const validations: any = {
   docPublisher: {
     name: {},
     notes: {},
+    url: {},
   },
 };
 
@@ -26,6 +30,10 @@ export default class DocPublisherUpdate extends mixins(JhiDataUtils) {
   @Inject('alertService') private alertService: () => AlertService;
 
   public docPublisher: IDocPublisher = new DocPublisher();
+
+  @Inject('docService') private docService: () => DocService;
+
+  public docs: IDoc[] = [];
 
   @Inject('docCollectionService') private docCollectionService: () => DocCollectionService;
 
@@ -111,6 +119,11 @@ export default class DocPublisherUpdate extends mixins(JhiDataUtils) {
   }
 
   public initRelationships(): void {
+    this.docService()
+      .retrieve()
+      .then(res => {
+        this.docs = res.data;
+      });
     this.docCollectionService()
       .retrieve()
       .then(res => {

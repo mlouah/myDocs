@@ -65,6 +65,9 @@ public class DocPublisherService {
                 if (docPublisher.getNotes() != null) {
                     existingDocPublisher.setNotes(docPublisher.getNotes());
                 }
+                if (docPublisher.getUrl() != null) {
+                    existingDocPublisher.setUrl(docPublisher.getUrl());
+                }
 
                 return existingDocPublisher;
             })

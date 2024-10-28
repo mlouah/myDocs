@@ -10,7 +10,6 @@ import DocFormatService from './doc-format/doc-format.service';
 import DocCollectionService from './doc-collection/doc-collection.service';
 import LanguageService from './language/language.service';
 import DomaineService from './domaine/domaine.service';
-import DocCategoryService from './doc-category/doc-category.service';
 // jhipster-needle-add-entity-service-to-entities-component-import - JHipster will import entities services here
 
 @Component
@@ -25,6 +24,5 @@ export default class Entities extends Vue {
   @Provide('docCollectionService') private docCollectionService = () => new DocCollectionService();
   @Provide('languageService') private languageService = () => new LanguageService();
   @Provide('domaineService') private domaineService = () => new DomaineService();
-  @Provide('docCategoryService') private docCategoryService = () => new DocCategoryService();
   // jhipster-needle-add-entity-service-to-entities-component - JHipster will import entities services here
 }

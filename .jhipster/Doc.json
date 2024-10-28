@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20230917195314",
+  "changelogDate": "20230917223436",
   "dto": "no",
   "embedded": false,
   "entityTableName": "doc",
@@ -22,17 +22,8 @@
       "fieldValidateRulesMinlength": "4"
     },
     {
-      "fieldName": "coverImgPath",
-      "fieldType": "String"
-    },
-    {
       "fieldName": "editionNumer",
       "fieldType": "Integer"
-    },
-    {
-      "fieldName": "summary",
-      "fieldType": "byte[]",
-      "fieldTypeBlobContent": "text"
     },
     {
       "fieldName": "purchaseDate",
@@ -51,8 +42,10 @@
       "fieldType": "Float"
     },
     {
-      "fieldName": "copies",
-      "fieldType": "Integer"
+      "fieldName": "rating",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "5"
     },
     {
       "fieldName": "pageNumber",
@@ -61,11 +54,6 @@
     {
       "fieldName": "numDoc",
       "fieldType": "String"
-    },
-    {
-      "fieldName": "myNotes",
-      "fieldType": "byte[]",
-      "fieldTypeBlobContent": "text"
     },
     {
       "fieldName": "keywords",
@@ -80,6 +68,20 @@
     {
       "fieldName": "filename",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "summary",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
+    },
+    {
+      "fieldName": "coverImgPath",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "myNotes",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "text"
     }
   ],
   "fluentMethods": true,
@@ -91,17 +93,9 @@
     {
       "otherEntityField": "name",
       "otherEntityName": "docPublisher",
-      "ownerSide": true,
-      "relationshipName": "publisher",
-      "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityField": "name",
-      "otherEntityName": "docCollection",
       "otherEntityRelationshipName": "doc",
-      "ownerSide": true,
-      "relationshipName": "collection",
-      "relationshipType": "one-to-one"
+      "relationshipName": "publisher",
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityField": "format",
@@ -133,9 +127,9 @@
     },
     {
       "otherEntityField": "name",
-      "otherEntityName": "docCategory",
+      "otherEntityName": "docCollection",
       "otherEntityRelationshipName": "doc",
-      "relationshipName": "docCategory",
+      "relationshipName": "collection",
       "relationshipType": "many-to-one"
     }
   ],

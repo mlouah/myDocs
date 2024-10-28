@@ -37,6 +37,9 @@
               <span>Notes</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'notes'"></jhi-sort-indicator>
             </th>
+            <th scope="row" v-on:click="changeOrder('url')">
+              <span>Url</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'url'"></jhi-sort-indicator>
+            </th>
             <th scope="row"></th>
           </tr>
         </thead>
@@ -49,6 +52,7 @@
             </td>
             <td>{{ docPublisher.name }}</td>
             <td>{{ docPublisher.notes }}</td>
+            <td>{{ docPublisher.url }}</td>
             <td class="text-right">
               <div class="btn-group">
                 <router-link :to="{ name: 'DocPublisherView', params: { docPublisherId: docPublisher.id } }" custom v-slot="{ navigate }">

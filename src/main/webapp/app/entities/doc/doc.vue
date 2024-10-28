@@ -14,10 +14,12 @@
         </router-link>
       </div>
     </h2>
+
     <br />
     <div class="alert alert-warning" v-if="!isFetching && docs && docs.length === 0">
       <span>No docs found</span>
     </div>
+
     <div class="table-responsive" v-if="docs && docs.length > 0">
       <table class="table table-striped" aria-describedby="docs">
         <thead>
@@ -30,29 +32,23 @@
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'title'"></jhi-sort-indicator>
             </th>
             <th scope="row" v-on:click="changeOrder('subTitle')">
-              <span>Sub Title</span>
+              <span> </span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'subTitle'"></jhi-sort-indicator>
             </th>
             <th scope="row" v-on:click="changeOrder('publishYear')">
               <span>Publish Year</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'publishYear'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('coverImgPath')">
-              <span>Cover Img Path</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'coverImgPath'"></jhi-sort-indicator>
-            </th>
             <th scope="row" v-on:click="changeOrder('editionNumer')">
               <span>Edition Numer</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'editionNumer'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('summary')">
-              <span>Summary</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'summary'"></jhi-sort-indicator>
-            </th>
+            <!--
             <th scope="row" v-on:click="changeOrder('purchaseDate')">
               <span>Purchase Date</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'purchaseDate'"></jhi-sort-indicator>
             </th>
+			-->
             <th scope="row" v-on:click="changeOrder('startReadingDate')">
               <span>Start Reading Date</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'startReadingDate'"></jhi-sort-indicator>
@@ -61,14 +57,18 @@
               <span>End Reading Date</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'endReadingDate'"></jhi-sort-indicator>
             </th>
+            <!--
             <th scope="row" v-on:click="changeOrder('price')">
               <span>Price</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'price'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('copies')">
-              <span>Copies</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'copies'"></jhi-sort-indicator>
+			-->
+            <!--
+            <th scope="row" v-on:click="changeOrder('rating')">
+              <span>Rating</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'rating'"></jhi-sort-indicator>
             </th>
+
             <th scope="row" v-on:click="changeOrder('pageNumber')">
               <span>Page Number</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'pageNumber'"></jhi-sort-indicator>
@@ -77,37 +77,50 @@
               <span>Num Doc</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'numDoc'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('myNotes')">
-              <span>My Notes</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'myNotes'"></jhi-sort-indicator>
-            </th>
-            <th scope="row" v-on:click="changeOrder('keywords')">
+            -->
+            <!--
+			<th scope="row" v-on:click="changeOrder('keywords')">
               <span>Keywords</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'keywords'"></jhi-sort-indicator>
             </th>
+
             <th scope="row" v-on:click="changeOrder('toc')">
               <span>Toc</span> <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'toc'"></jhi-sort-indicator>
             </th>
+
             <th scope="row" v-on:click="changeOrder('filename')">
               <span>Filename</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'filename'"></jhi-sort-indicator>
             </th>
+            <th scope="row" v-on:click="changeOrder('summary')">
+              <span>Summary</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'summary'"></jhi-sort-indicator>
+            </th>
+            <th scope="row" v-on:click="changeOrder('coverImgPath')">
+              <span>Cover Img Path</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'coverImgPath'"></jhi-sort-indicator>
+            </th>
+            <th scope="row" v-on:click="changeOrder('myNotes')">
+              <span>My Notes</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'myNotes'"></jhi-sort-indicator>
+            </th>
+            -->
+
             <th scope="row" v-on:click="changeOrder('publisher.name')">
               <span>Publisher</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'publisher.name'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('collection.name')">
-              <span>Collection</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'collection.name'"></jhi-sort-indicator>
-            </th>
+            <!--
             <th scope="row" v-on:click="changeOrder('format.format')">
               <span>Format</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'format.format'"></jhi-sort-indicator>
             </th>
+
             <th scope="row" v-on:click="changeOrder('langue.code')">
               <span>Langue</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'langue.code'"></jhi-sort-indicator>
             </th>
+			-->
             <th scope="row" v-on:click="changeOrder('maintopic.name')">
               <span>Maintopic</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'maintopic.name'"></jhi-sort-indicator>
@@ -116,10 +129,12 @@
               <span>Main Author</span>
               <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'mainAuthor.name'"></jhi-sort-indicator>
             </th>
-            <th scope="row" v-on:click="changeOrder('docCategory.name')">
-              <span>Doc Category</span>
-              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'docCategory.name'"></jhi-sort-indicator>
+            <!--
+            <th scope="row" v-on:click="changeOrder('collection.name')">
+              <span>Collection</span>
+              <jhi-sort-indicator :current-order="propOrder" :reverse="reverse" :field-name="'collection.name'"></jhi-sort-indicator>
             </th>
+			-->
             <th scope="row"></th>
           </tr>
         </thead>
@@ -128,23 +143,31 @@
             <td>
               <router-link :to="{ name: 'DocView', params: { docId: doc.id } }">{{ doc.id }}</router-link>
             </td>
-            <td>{{ doc.title }}</td>
-            <td>{{ doc.subTitle }}</td>
+            <td>
+              <strong>
+                <span style="color: red"> {{ doc.title }}</span>
+              </strong>
+            </td>
+            <td>
+              <em>{{ doc.subTitle }}</em>
+            </td>
             <td>{{ doc.publishYear }}</td>
-            <td>{{ doc.coverImgPath }}</td>
             <td>{{ doc.editionNumer }}</td>
-            <td>{{ doc.summary }}</td>
-            <td>{{ doc.purchaseDate }}</td>
+            <!-- <td>{{ doc.purchaseDate }}</td> -->
             <td>{{ doc.startReadingDate }}</td>
             <td>{{ doc.endReadingDate }}</td>
-            <td>{{ doc.price }}</td>
-            <td>{{ doc.copies }}</td>
+            <!--
+			<td>{{ doc.price }}</td>
+            <td>{{ doc.rating }}</td>
             <td>{{ doc.pageNumber }}</td>
             <td>{{ doc.numDoc }}</td>
-            <td>{{ doc.myNotes }}</td>
-            <td>{{ doc.keywords }}</td>
+			<td>{{ doc.keywords }}</td>
             <td>{{ doc.toc }}</td>
             <td>{{ doc.filename }}</td>
+            <td>{{ doc.summary }}</td>
+            <td>{{ doc.coverImgPath }}</td>
+            <td>{{ doc.myNotes }}</td>
+			-->
             <td>
               <div v-if="doc.publisher">
                 <router-link :to="{ name: 'DocPublisherView', params: { docPublisherId: doc.publisher.id } }">{{
@@ -152,23 +175,19 @@
                 }}</router-link>
               </div>
             </td>
-            <td>
-              <div v-if="doc.collection">
-                <router-link :to="{ name: 'DocCollectionView', params: { docCollectionId: doc.collection.id } }">{{
-                  doc.collection.name
-                }}</router-link>
-              </div>
-            </td>
-            <td>
+            <!--
+			<td>
               <div v-if="doc.format">
                 <router-link :to="{ name: 'DocFormatView', params: { docFormatId: doc.format.id } }">{{ doc.format.format }}</router-link>
               </div>
             </td>
+
             <td>
               <div v-if="doc.langue">
                 <router-link :to="{ name: 'LanguageView', params: { languageId: doc.langue.id } }">{{ doc.langue.code }}</router-link>
               </div>
             </td>
+            -->
             <td>
               <div v-if="doc.maintopic">
                 <router-link :to="{ name: 'DocTopicView', params: { docTopicId: doc.maintopic.id } }">{{ doc.maintopic.name }}</router-link>
@@ -181,13 +200,16 @@
                 }}</router-link>
               </div>
             </td>
-            <td>
-              <div v-if="doc.docCategory">
-                <router-link :to="{ name: 'DocCategoryView', params: { docCategoryId: doc.docCategory.id } }">{{
-                  doc.docCategory.name
+            <!--
+			<td>
+
+              <div v-if="doc.collection">
+                <router-link :to="{ name: 'DocCollectionView', params: { docCollectionId: doc.collection.id } }">{{
+                  doc.collection.name
                 }}</router-link>
               </div>
             </td>
+			-->
             <td class="text-right">
               <div class="btn-group">
                 <router-link :to="{ name: 'DocView', params: { docId: doc.id } }" custom v-slot="{ navigate }">
@@ -196,12 +218,14 @@
                     <span class="d-none d-md-inline">View</span>
                   </button>
                 </router-link>
+
                 <router-link :to="{ name: 'DocEdit', params: { docId: doc.id } }" custom v-slot="{ navigate }">
                   <button @click="navigate" class="btn btn-primary btn-sm edit" data-cy="entityEditButton">
                     <font-awesome-icon icon="pencil-alt"></font-awesome-icon>
                     <span class="d-none d-md-inline">Edit</span>
                   </button>
                 </router-link>
+
                 <b-button
                   v-on:click="prepareRemove(doc)"
                   variant="danger"

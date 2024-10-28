@@ -2,6 +2,8 @@ package com.perso.mydocs.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -28,15 +30,13 @@ public class DocCollection implements Serializable {
     @Column(name = "notes")
     private String notes;
 
-    @JsonIgnoreProperties(
-        value = { "publisher", "collection", "format", "langue", "maintopic", "mainAuthor", "docCategory" },
-        allowSetters = true
-    )
-    @OneToOne(mappedBy = "collection")
-    private Doc doc;
+    @OneToMany(mappedBy = "collection")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "publisher", "format", "langue", "maintopic", "mainAuthor", "collection" }, allowSetters = true)
+    private Set<Doc> docs = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "collections" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "docs", "collections" }, allowSetters = true)
     private DocPublisher docPublisher;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -80,22 +80,34 @@ public class DocCollection implements Serializable {
         this.notes = notes;
     }
 
-    public Doc getDoc() {
-        return this.doc;
+    public Set<Doc> getDocs() {
+        return this.docs;
     }
 
-    public void setDoc(Doc doc) {
-        if (this.doc != null) {
-            this.doc.setCollection(null);
+    public void setDocs(Set<Doc> docs) {
+        if (this.docs != null) {
+            this.docs.forEach(i -> i.setCollection(null));
         }
-        if (doc != null) {
-            doc.setCollection(this);
+        if (docs != null) {
+            docs.forEach(i -> i.setCollection(this));
         }
-        this.doc = doc;
+        this.docs = docs;
     }
 
-    public DocCollection doc(Doc doc) {
-        this.setDoc(doc);
+    public DocCollection docs(Set<Doc> docs) {
+        this.setDocs(docs);
+        return this;
+    }
+
+    public DocCollection addDoc(Doc doc) {
+        this.docs.add(doc);
+        doc.setCollection(this);
+        return this;
+    }
+
+    public DocCollection removeDoc(Doc doc) {
+        this.docs.remove(doc);
+        doc.setCollection(null);
         return this;
     }
 

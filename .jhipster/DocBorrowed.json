@@ -1,6 +1,6 @@
 {
   "applications": "*",
-  "changelogDate": "20230917195318",
+  "changelogDate": "20230917223440",
   "dto": "no",
   "embedded": false,
   "entityTableName": "doc_borrowed",

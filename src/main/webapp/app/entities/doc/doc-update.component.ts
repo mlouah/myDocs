@@ -10,9 +10,6 @@ import AlertService from '@/shared/alert/alert.service';
 import DocPublisherService from '@/entities/doc-publisher/doc-publisher.service';
 import { IDocPublisher } from '@/shared/model/doc-publisher.model';
 
-import DocCollectionService from '@/entities/doc-collection/doc-collection.service';
-import { IDocCollection } from '@/shared/model/doc-collection.model';
-
 import DocFormatService from '@/entities/doc-format/doc-format.service';
 import { IDocFormat } from '@/shared/model/doc-format.model';
 
@@ -25,8 +22,8 @@ import { IDocTopic } from '@/shared/model/doc-topic.model';
 import DocAuthorService from '@/entities/doc-author/doc-author.service';
 import { IDocAuthor } from '@/shared/model/doc-author.model';
 
-import DocCategoryService from '@/entities/doc-category/doc-category.service';
-import { IDocCategory } from '@/shared/model/doc-category.model';
+import DocCollectionService from '@/entities/doc-collection/doc-collection.service';
+import { IDocCollection } from '@/shared/model/doc-collection.model';
 
 import { IDoc, Doc } from '@/shared/model/doc.model';
 import DocService from './doc.service';
@@ -41,20 +38,22 @@ const validations: any = {
       minLength: minLength(4),
       maxLength: maxLength(4),
     },
-    coverImgPath: {},
     editionNumer: {},
-    summary: {},
     purchaseDate: {},
     startReadingDate: {},
     endReadingDate: {},
     price: {},
-    copies: {},
+    rating: {
+      maxLength: maxLength(5),
+    },
     pageNumber: {},
     numDoc: {},
-    myNotes: {},
     keywords: {},
     toc: {},
     filename: {},
+    summary: {},
+    coverImgPath: {},
+    myNotes: {},
   },
 };
 
@@ -70,10 +69,6 @@ export default class DocUpdate extends mixins(JhiDataUtils) {
   @Inject('docPublisherService') private docPublisherService: () => DocPublisherService;
 
   public docPublishers: IDocPublisher[] = [];
-
-  @Inject('docCollectionService') private docCollectionService: () => DocCollectionService;
-
-  public docCollections: IDocCollection[] = [];
 
   @Inject('docFormatService') private docFormatService: () => DocFormatService;
 
@@ -91,9 +86,9 @@ export default class DocUpdate extends mixins(JhiDataUtils) {
 
   public docAuthors: IDocAuthor[] = [];
 
-  @Inject('docCategoryService') private docCategoryService: () => DocCategoryService;
+  @Inject('docCollectionService') private docCollectionService: () => DocCollectionService;
 
-  public docCategories: IDocCategory[] = [];
+  public docCollections: IDocCollection[] = [];
   public isSaving = false;
   public currentLanguage = '';
 
@@ -180,11 +175,6 @@ export default class DocUpdate extends mixins(JhiDataUtils) {
       .then(res => {
         this.docPublishers = res.data;
       });
-    this.docCollectionService()
-      .retrieve()
-      .then(res => {
-        this.docCollections = res.data;
-      });
     this.docFormatService()
       .retrieve()
       .then(res => {
@@ -205,10 +195,10 @@ export default class DocUpdate extends mixins(JhiDataUtils) {
       .then(res => {
         this.docAuthors = res.data;
       });
-    this.docCategoryService()
+    this.docCollectionService()
       .retrieve()
       .then(res => {
-        this.docCategories = res.data;
+        this.docCollections = res.data;
       });
   }
 }

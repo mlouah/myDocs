@@ -57,18 +57,6 @@
             </div>
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="doc-coverImgPath">Cover Img Path</label>
-            <input
-              type="text"
-              class="form-control"
-              name="coverImgPath"
-              id="doc-coverImgPath"
-              data-cy="coverImgPath"
-              :class="{ valid: !$v.doc.coverImgPath.$invalid, invalid: $v.doc.coverImgPath.$invalid }"
-              v-model="$v.doc.coverImgPath.$model"
-            />
-          </div>
-          <div class="form-group">
             <label class="form-control-label" for="doc-editionNumer">Edition Numer</label>
             <input
               type="number"
@@ -79,17 +67,6 @@
               :class="{ valid: !$v.doc.editionNumer.$invalid, invalid: $v.doc.editionNumer.$invalid }"
               v-model.number="$v.doc.editionNumer.$model"
             />
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" for="doc-summary">Summary</label>
-            <textarea
-              class="form-control"
-              name="summary"
-              id="doc-summary"
-              data-cy="summary"
-              :class="{ valid: !$v.doc.summary.$invalid, invalid: $v.doc.summary.$invalid }"
-              v-model="$v.doc.summary.$model"
-            ></textarea>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="doc-purchaseDate">Purchase Date</label>
@@ -188,16 +165,19 @@
             />
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="doc-copies">Copies</label>
+            <label class="form-control-label" for="doc-rating">Rating</label>
             <input
-              type="number"
+              type="text"
               class="form-control"
-              name="copies"
-              id="doc-copies"
-              data-cy="copies"
-              :class="{ valid: !$v.doc.copies.$invalid, invalid: $v.doc.copies.$invalid }"
-              v-model.number="$v.doc.copies.$model"
+              name="rating"
+              id="doc-rating"
+              data-cy="rating"
+              :class="{ valid: !$v.doc.rating.$invalid, invalid: $v.doc.rating.$invalid }"
+              v-model="$v.doc.rating.$model"
             />
+            <div v-if="$v.doc.rating.$anyDirty && $v.doc.rating.$invalid">
+              <small class="form-text text-danger" v-if="!$v.doc.rating.maxLength"> This field cannot be longer than 5 characters. </small>
+            </div>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="doc-pageNumber">Page Number</label>
@@ -222,17 +202,6 @@
               :class="{ valid: !$v.doc.numDoc.$invalid, invalid: $v.doc.numDoc.$invalid }"
               v-model="$v.doc.numDoc.$model"
             />
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" for="doc-myNotes">My Notes</label>
-            <textarea
-              class="form-control"
-              name="myNotes"
-              id="doc-myNotes"
-              data-cy="myNotes"
-              :class="{ valid: !$v.doc.myNotes.$invalid, invalid: $v.doc.myNotes.$invalid }"
-              v-model="$v.doc.myNotes.$model"
-            ></textarea>
           </div>
           <div class="form-group">
             <label class="form-control-label" for="doc-keywords">Keywords</label>
@@ -269,6 +238,40 @@
             />
           </div>
           <div class="form-group">
+            <label class="form-control-label" for="doc-summary">Summary</label>
+            <textarea
+              class="form-control"
+              name="summary"
+              id="doc-summary"
+              data-cy="summary"
+              :class="{ valid: !$v.doc.summary.$invalid, invalid: $v.doc.summary.$invalid }"
+              v-model="$v.doc.summary.$model"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="doc-coverImgPath">Cover Img Path</label>
+            <input
+              type="text"
+              class="form-control"
+              name="coverImgPath"
+              id="doc-coverImgPath"
+              data-cy="coverImgPath"
+              :class="{ valid: !$v.doc.coverImgPath.$invalid, invalid: $v.doc.coverImgPath.$invalid }"
+              v-model="$v.doc.coverImgPath.$model"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-control-label" for="doc-myNotes">My Notes</label>
+            <textarea
+              class="form-control"
+              name="myNotes"
+              id="doc-myNotes"
+              data-cy="myNotes"
+              :class="{ valid: !$v.doc.myNotes.$invalid, invalid: $v.doc.myNotes.$invalid }"
+              v-model="$v.doc.myNotes.$model"
+            ></textarea>
+          </div>
+          <div class="form-group">
             <label class="form-control-label" for="doc-publisher">Publisher</label>
             <select class="form-control" id="doc-publisher" data-cy="publisher" name="publisher" v-model="doc.publisher">
               <option v-bind:value="null"></option>
@@ -278,19 +281,6 @@
                 :key="docPublisherOption.id"
               >
                 {{ docPublisherOption.name }}
-              </option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label class="form-control-label" for="doc-collection">Collection</label>
-            <select class="form-control" id="doc-collection" data-cy="collection" name="collection" v-model="doc.collection">
-              <option v-bind:value="null"></option>
-              <option
-                v-bind:value="doc.collection && docCollectionOption.id === doc.collection.id ? doc.collection : docCollectionOption"
-                v-for="docCollectionOption in docCollections"
-                :key="docCollectionOption.id"
-              >
-                {{ docCollectionOption.name }}
               </option>
             </select>
           </div>
@@ -347,15 +337,15 @@
             </select>
           </div>
           <div class="form-group">
-            <label class="form-control-label" for="doc-docCategory">Doc Category</label>
-            <select class="form-control" id="doc-docCategory" data-cy="docCategory" name="docCategory" v-model="doc.docCategory">
+            <label class="form-control-label" for="doc-collection">Collection</label>
+            <select class="form-control" id="doc-collection" data-cy="collection" name="collection" v-model="doc.collection">
               <option v-bind:value="null"></option>
               <option
-                v-bind:value="doc.docCategory && docCategoryOption.id === doc.docCategory.id ? doc.docCategory : docCategoryOption"
-                v-for="docCategoryOption in docCategories"
-                :key="docCategoryOption.id"
+                v-bind:value="doc.collection && docCollectionOption.id === doc.collection.id ? doc.collection : docCollectionOption"
+                v-for="docCollectionOption in docCollections"
+                :key="docCollectionOption.id"
               >
-                {{ docCategoryOption.name }}
+                {{ docCollectionOption.name }}
               </option>
             </select>
           </div>
