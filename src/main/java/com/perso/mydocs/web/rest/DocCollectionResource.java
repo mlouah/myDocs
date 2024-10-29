@@ -159,8 +159,6 @@ public class DocCollectionResource {
         log.debug("REST request to get DocCollections by criteria: {}", criteria);
         Page<DocCollection> page = docCollectionQueryService.findByCriteria(criteria, pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
-
-        System.out.println(" ******************   DocCollectionResource.getAllDocCollections()    *****************");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
 

@@ -175,7 +175,6 @@ public class DocResource {
     @GetMapping("/docs/{id}")
     public ResponseEntity<Doc> getDoc(@PathVariable Long id) {
         log.debug("REST request to get Doc : {}", id);
-        System.out.println("********************* DocResource.getDoc() ******************");
         Optional<Doc> doc = docService.findOne(id);
         return ResponseUtil.wrapOrNotFound(doc);
     }
