@@ -1,3 +1,10 @@
+#Jhipster mastering
+This application will be used to master Jhipster eco system !
+- Audit
+- Sorting
+- Filtring
+- ... to be completed  
+
 # mydocs
 
 This application was generated using JHipster 7.9.3, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v7.9.3](https://www.jhipster.tech/documentation-archive/v7.9.3).
